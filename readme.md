@@ -14,12 +14,12 @@ vi /etc/hosts
 
 ### 2.主控安装
 ```shell
-curl -fsSL https://github.com/LoveesYe/cdnflydadao/raw/main/cdnfly/v5.1.13/master/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
+curl -fsSL https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/master/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
 ```
 
 ### 3.节点安装
 ```shell
-curl -m 5 https://github.com/SkyAerope/cdnfly/raw/main/agent/agent.sh -o agent.sh  && chmod +x agent.sh && sudo ./agent.sh --master-ver v5.1.11 --master-ip ip --es-ip ip --es-pwd passwd
+curl -m 5 https://github.com/okcdn100/cdn/raw/main/agent/agent.sh -o agent.sh  && chmod +x agent.sh && sudo ./agent.sh --master-ver v5.1.11 --master-ip ip --es-ip ip --es-pwd passwd
 ```
 
 修改为你自身安装节点,或使用默认的github节点安装
