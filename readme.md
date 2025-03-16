@@ -19,7 +19,7 @@ curl -fsSL https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/master/master
 
 ### 2.主控安装 v5.1.11
 ```shell
-curl -fsSL https://github.com/LoveesYe/cdnflydadao/raw/main/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
+curl -fsSL https://github.com/okcdn100/cdn/raw/main/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
 ```
 
 ### 3.节点安装
