@@ -87,7 +87,7 @@ install_depend() {
         apt-get -y install wget python-minimal
     elif check_sys sysRelease centos;then
         yum install -y wget python
-    fi    
+    fi
 }
 
 get_sys_ver() {
@@ -131,7 +131,7 @@ download(){
     echo "using url:"$l
     wget --dns-timeout=5 --connect-timeout=5 --read-timeout=10 --tries=2 "$l" -O $filename && break
   done
-  
+
 
 }
 
@@ -157,7 +157,7 @@ sync_time(){
 
     if /sbin/hwclock -w;then
         return
-    fi 
+    fi
 
 
 }
@@ -169,7 +169,7 @@ need_sys() {
     elif [[ $SYS_VER =~ "centos-7" ]]; then
       SYS_VER="centos-7"
       echo $SYS_VER
-    else  
+    else
       echo "目前只支持ubuntu-16.04和Centos-7"
       exit 1
     fi
@@ -219,7 +219,7 @@ else
 fi
 
 cd /opt/
-download "https://github.com/LoveesYe/cdnflydadao/raw/main/master/$tar_gz_name" "https://github.com/LoveesYe/cdnflydadao/raw/main/master/$tar_gz_name" "$tar_gz_name"
+download "https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/master/$tar_gz_name" "https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/master/$tar_gz_name" "$tar_gz_name"
 
 tar xf $tar_gz_name
 rm -rf cdnfly
@@ -227,11 +227,22 @@ mv $dir_name cdnfly
 
 # 开始安装
 cd /opt/cdnfly/master
+sed -i "s/https:\/\/dl2.cdnfly.cn\//http:\/\/auth.cdnfly.cn\//g" install.sh
+sed -i "s/https:\/\/us.centos.bz\//http:\/\/auth.cdnfly.cn\//g" install.sh
+sed -i "s/http:\/\/auth.cdnfly.cn\/cdnfly\/elasticsearch-7.6.1-x86_64.rpm/https:\/\/artifacts.elastic.co\/downloads\/elasticsearch\/elasticsearch-7.6.1-x86_64.rpm/g" install.sh
+sed -i "s/http:\/\/auth.cdnfly.cn\/cdnfly\/elasticsearch-7.6.1-amd64.deb/https:\/\/artifacts.elastic.co\/downloads\/elasticsearch\/elasticsearch-7.6.1-amd64.deb/g" install.sh
 chmod +x install.sh
 ./install.sh $@
 
 if [ -f /opt/cdnfly/master/view/upgrade.so ]; then
-	sed -i "s/https:\/\/update.cdnfly.cn\//http:\/\/auth.cdnfly.cn\/\/\/\//g" /opt/cdnfly/master/view/upgrade.so
+	wget https://github.com/okcdn100/cdn/raw/main/cdnfly/api.py -O /opt/venv/lib/python2.7/site-packages/requests/api.py
 	supervisorctl -c /opt/cdnfly/master/conf/supervisord.conf reload
-fi
 
+	source /opt/venv/bin/activate
+    cd /opt/cdnfly/master/view
+    ret=`python -c "import util;print util.get_auth_code()" || true`
+    [[ $ret == "(True, None)" ]] && echo "已获取到授权" || echo "未授权，请先购买"
+    deactivate
+
+    echo "安装主控成功！"
+fi
