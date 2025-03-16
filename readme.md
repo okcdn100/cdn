@@ -12,9 +12,14 @@ vi /etc/hosts
 ```
 0.0.0.0改成自己搭建的验证服务器的IP
 
-### 2.主控安装
+### 2.主控安装 v5.1.13
 ```shell
 curl -fsSL https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/master/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
+```
+
+### 2.主控安装 v5.1.11
+```shell
+curl -fsSL https://github.com/LoveesYe/cdnflydadao/raw/main/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
 ```
 
 ### 3.节点安装
