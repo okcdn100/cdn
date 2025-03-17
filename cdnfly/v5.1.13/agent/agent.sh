@@ -87,7 +87,7 @@ install_depend() {
         apt-get -y install wget python-minimal
     elif check_sys sysRelease centos;then
         yum install -y wget python
-    fi    
+    fi
 }
 
 download(){
@@ -115,7 +115,7 @@ download(){
     echo "using url:"$l
     wget --dns-timeout=5 --connect-timeout=5 --read-timeout=10 --tries=2 "$l" -O $filename && break
   done
-  
+
 
 }
 
@@ -157,7 +157,7 @@ sync_time(){
 
     if /sbin/hwclock -w;then
         return
-    fi 
+    fi
 
 
 }
@@ -169,7 +169,7 @@ need_sys() {
     elif [[ $SYS_VER =~ "centos-7" ]]; then
       SYS_VER="centos-7"
       echo $SYS_VER
-    else  
+    else
       echo "目前只支持ubuntu-16.04和Centos-7"
       exit 1
     fi
@@ -236,7 +236,7 @@ fi
 
 cd /opt
 
-download "https://github.com/LoveesYe/cdnflydadao/raw/main/cdnfly/v5.1.13/agent/$tar_gz_name" "https://github.com/LoveesYe/cdnflydadao/raw/main/cdnfly/v5.1.13/agent/$tar_gz_name" "$tar_gz_name"
+download "https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/agent/$tar_gz_name" "https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/agent/$tar_gz_name" "$tar_gz_name"
 
 rm -rf $dir_name
 tar xf $tar_gz_name
