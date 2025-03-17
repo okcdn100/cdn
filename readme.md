@@ -14,17 +14,17 @@ vi /etc/hosts
 
 ### 2.主控安装 v5.1.13
 ```shell
-curl -fsSL https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/master/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
+curl -fsSL https://raw.githubusercontent.com/okcdn100/cdn/main/cdnfly/v5.1.13/master/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
 ```
 
 ### 2.主控安装 v5.1.11
 ```shell
-curl -fsSL https://github.com/okcdn100/cdn/raw/main/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
+curl -fsSL https://raw.githubusercontent.com/okcdn100/cdn/main/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
 ```
 
 ### 3.节点安装
 ```shell
-curl -m 5 https://github.com/okcdn100/cdn/raw/main/cdnfly/v5.1.13/agent/agent.sh -o agent.sh
+curl -m 5 https://raw.githubusercontent.com/okcdn100/cdn/main/cdnfly/v5.1.13/agent/agent.sh -o agent.sh
 ```
 
 修改为你自身安装节点,或使用默认的github节点安装
